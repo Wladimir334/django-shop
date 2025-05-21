@@ -2,13 +2,15 @@
 
 {% block content %}
 <div>
-{% for category in categories %}
-  <div>
-    <b>{{ category.pk }}. {{ category.name }}</b>
-    <br>
-    <i>{{ category.description }}</i>
-    <br>
-  </div>
+  {% for category in categories %}
+    <div>
+      <b>{{ category.pk }}. {{ category.name }}</b>
+      <br>
+      <i>{{ category.description }}</i>
+      <br>
+    </div>
+  {% endfor %}
 </div>
+
 
 {% endblock content %}

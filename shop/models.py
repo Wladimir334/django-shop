@@ -9,7 +9,7 @@ class Category(models.Model):
     description = models.TextField(verbose_name='Описание')
 
     class Meta:
-        ordering = ['category', 'name']
+        ordering = ['name', 'category']
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
@@ -35,9 +35,8 @@ class Product(models.Model):
     updated = models.DateTimeField(auto_now=True, editable=False)
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
 
-
     class Meta:
-        ordering = ['catagory', 'name']
+        ordering = ['category', 'name']
         indexes = [
             models.Index(fields=['id']),
             models.Index(fields=['name'])

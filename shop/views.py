@@ -14,12 +14,12 @@ from .models import Category, Product
 class CategoryCreateView(CreateView):
     model = Category
     form_class = CategoryCreateForm
-    template_name = 'shop/admin/add_category.html'
+    template_name = 'admin/add_category.html'
     success_url = reverse_lazy('staff:categories')
 
 
 # Класс для просмотрв категорий
 class CategoryListView(ListView):
     model = Category
-    template_name = 'shop/admin/list_category.html'
+    template_name = 'admin/list_category.html'
     context_object_name = 'categories'
