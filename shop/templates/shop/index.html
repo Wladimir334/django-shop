@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'admin_pages/base.html' %}
 
-</body>
-</html>
+{% load static %}
+
+{% block content %}
+
+<h1>Главная страница</h1>
+<div>
+    <img src="{% static 'img/1.jpeg' %}" width="1000" height="auto">
+</div>
+
+{% endblock content %}
