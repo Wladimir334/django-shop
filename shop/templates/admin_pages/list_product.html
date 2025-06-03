@@ -1,5 +1,7 @@
 {% extends 'admin_pages/base.html' %}
 
+{% load static %}
+
 {% block content %}
 <div>
   {% for product in products %}
@@ -12,11 +14,14 @@
       </div>
 
       <div>Категория товара: <span>{{ product.category }}</span></div>
-      <div><i>{{ product.description }}</i></div>
+      <div>
+          <i>{{ product.description }}</i></div>
       <br>
       <div>
           {% if product.image %}
-          <img src="{{ product.image.url }}" width="200" height="auto">
+            <img src="{{ product.image.url }}" width="200" height="auto">
+          {% else %}
+             <img src="{% static 'img/no.jpg'%}" width="150px" height="auto">
           {% endif %}
       </div>
       <br>

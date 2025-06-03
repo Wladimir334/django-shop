@@ -1,6 +1,9 @@
-{% extends 'admin_pages/base.html' %}
-
+{% extends 'shop/base.html' %}
 {% load static %}
+
+{% block title %}
+<title>{{ product.name }}</title>
+{% endblock title %}
 
 {% block content %}
 <div class="product-detail">
