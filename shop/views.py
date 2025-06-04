@@ -48,9 +48,9 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
     slug_url_kwarg = 'slug'
 
-def index(request):
-    context = {"title": "Главная страница"}
-    return render(request, template_name='shop/index.html', context=context)
+# def index(request):
+#     context = {"title": "Главная страница"}
+#     return render(request, template_name='shop/index.html', context=context)
 
 ##############################   КЛИЕНТ    ###############################
 

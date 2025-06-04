@@ -1,5 +1,5 @@
 from django.urls import path
-from shop.views import index
+# from shop.views import index
 from .views import ProductsByCategoryListView, ProductDetailClientView
 
 app_name = 'shop'
