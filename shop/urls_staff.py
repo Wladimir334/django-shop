@@ -1,6 +1,5 @@
 from django.urls import path
 
-from tkinter.font import names
 
 from .views import (CategoryCreateView, CategoryListView,
                     ProductListView, ProductCreateView, ProductDetailView)

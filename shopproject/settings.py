@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop',
     'users',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,4 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 LOGIN_REDIRECT_URL = 'shop:index'
 LOGIN_URL = 'users:login'
+CART_SESSION_ID = 'cart'
