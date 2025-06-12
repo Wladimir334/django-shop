@@ -29,3 +29,12 @@ header {
 .menu-item:hover {
     background-color: #555;
 }
+
+.main {
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.product-item__image{
+    border-radius: 10px;
+}
