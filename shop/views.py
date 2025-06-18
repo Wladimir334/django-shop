@@ -1,3 +1,4 @@
+from decimal import Decimal
 from lib2to3.fixes.fix_input import context
 
 from django.shortcuts import render, get_object_or_404
@@ -8,8 +9,10 @@ from django.views.generic import (CreateView,
                                   UpdateView,
                                   DeleteView)
 
+from cart.views import Cart
 from .forms import CategoryCreateForm, ProductCreateForm
 from .models import Category, Product
+from cart.models import CartItem, CartUser
 
 
 ##############################   АДМИНКА    ###############################
@@ -22,7 +25,7 @@ class CategoryCreateView(CreateView):
     success_url = reverse_lazy('staff:categories')
 
 
-# Класс для просмотрв категорий
+# Класс для просмотрa категорий
 class CategoryListView(ListView):
     model = Category
     template_name = 'admin_pages/list_category.html'
@@ -80,3 +83,4 @@ class ProductDetailClientView(DetailView):
     template_name = 'shop/product_detail.html'
     context_object_name = 'product'
     slug_url_kwarg = 'slug'
+

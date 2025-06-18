@@ -19,13 +19,15 @@ from django.urls import path, include
 from django.conf.urls.static import static
 
 from shopproject import settings
+from shop.views import ProductsByCategoryListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cart/', include('cart.urls')),
     path('products/', include('shop.urls')),
     path('staff/', include('shop.urls_staff')),
     path('users/', include('users.urls')),
-    path('', include('shop.urls')),
+    path('', ProductsByCategoryListView.as_view(), name='main'),
 ]
 
 if settings.DEBUG:
