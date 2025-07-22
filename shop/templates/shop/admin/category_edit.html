@@ -1,0 +1,14 @@
+{% extends 'base_admin.html' %}
+
+{% block title %}
+<title>{{category.name}}</title>
+{% endblock title %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Изменить категорию</button>
+</form>
+
+{% endblock content %}

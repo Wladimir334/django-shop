@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>{{category.name}}</title>
+{% endblock title %}
+
+{% block content %}
+Категория - {{category.name}}
+<p>Краткая информация о категории</p>
+<p>6 случайных товаров из этой категории</p>
+
+{% endblock content %}

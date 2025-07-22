@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block title %}
+    <title>Магазин товаров</title>
+    {% endblock title %}
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{% url 'index' %}">Главная</a></li>
+                <li><a href="{% url 'categories' %}">Категории</a></li>
+                <li><a href="{% url 'products' %}">Товары</a></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Контакты</a></li>
+                {% if cart|length != 0 %}
+                <li><a href="{% url 'cart_detail' %}">Корзина (<span id="cartLengthHeader">{{cart|length}}</span>)</a></li>
+                {% else %}
+                <li><a href="{% url 'cart_detail' %}">Корзина <span id="cartLengthHeader"></span></a></li>
+                {% endif %}
+                <li><a href="{% url 'orders' %}">Заказы</a></li>
+                {% if request.user.id %}
+                <li><a href="{% url 'users:detail' request.user.id %}">{{request.user}}</a></li>
+                <li><a href="{% url 'users:logout' %}">Выйти</a></li>
+                {% else %}
+                <li><a href="{% url 'users:login' %}">Войти</a></li>
+                <li><a href="{% url 'users:register' %}">Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <form action="{% url 'product_search' %}" method="get" style="margin-top:10px; margin-left:20px">
+        <input type="search" name="query">
+        <button type="submit">Поиск</button>
+    </form>
+
+    {% block content %}
+    {% endblock content%}
+
+    <footer class="footer__new">
+        <p>Контактные данные: info@example.com | Телефон: +7 (123) 456-78-90</p>
+    </footer>
+</body>
+</html>

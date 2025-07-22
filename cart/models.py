@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
 from shop.models import Product
 
 User = get_user_model()
 
+
 class CartUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
 
 class CartItem(models.Model):
     cart = models.ForeignKey(CartUser, on_delete=models.CASCADE)
@@ -16,5 +17,4 @@ class CartItem(models.Model):
 
     class Meta:
         ordering = ['-created']
-
 

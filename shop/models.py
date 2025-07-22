@@ -4,12 +4,14 @@ from slugify import slugify
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Название')
-    slug = models.SlugField(max_length=100, unique=True, editable=False)
-    description = models.TextField(verbose_name='Описание')
+    name = models.CharField(max_length=200, verbose_name="Категория")
+    slug = models.SlugField(max_length=200, unique=True)
 
     class Meta:
         ordering = ['name']
+        indexes = [
+            models.Index(fields=['name']),
+        ]
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
@@ -21,25 +23,31 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        pass
-        # return reverse('shop:category_detail', kwargs={'slug': self.slug})
+        return reverse('category_detail', kwargs={'slug': self.slug})
+
 
 class Product(models.Model):
-    name = models.CharField(max_length=200, verbose_name='Наименование')
-    description = models.TextField(verbose_name='Описание товара', blank=True, null=True)
-    slug = models.SlugField(max_length=200, unique=True, editable=False)
-    image = models.ImageField(upload_to='products', blank=True, null=True, verbose_name='Изображение')
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Стоимость')
-    available = models.BooleanField(default=True, verbose_name='Доступность')
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    updated = models.DateTimeField(auto_now=True, editable=False)
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE, verbose_name='Категория товара')
+    category = models.ForeignKey(Category,
+                                 related_name='products',
+                                 on_delete=models.CASCADE)
+    name = models.CharField(max_length=200,
+                            verbose_name='Название')
+    description = models.TextField(blank=True)
+    slug = models.SlugField(max_length=200)
+    image = models.ImageField(upload_to='products/%Y/%m/%d',
+                              blank=True)
+    price = models.DecimalField(max_digits=10,
+                                decimal_places=2)
+    available = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['category', 'name']
+        ordering = ['name']
         indexes = [
-            models.Index(fields=['id']),
-            models.Index(fields=['name'])
+            models.Index(fields=['id', 'slug']),
+            models.Index(fields=['name']),
+            models.Index(fields=['-created']),
         ]
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
@@ -50,9 +58,9 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         slug_name = slugify(self.name)
-        slug = f'{slug_name}-{self.pk}'
+        slug = f"{slug_name}-{self.pk}"
         self.slug = slug
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('staff:product_detail', kwargs={'slug': self.slug})
+        return reverse('product_detail', kwargs={'slug': self.slug})
