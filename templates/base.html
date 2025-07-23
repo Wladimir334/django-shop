@@ -5,39 +5,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
     {% block title %}
     <title>Магазин товаров</title>
     {% endblock title %}
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <ul>
-                <li><a href="{% url 'index' %}">Главная</a></li>
-                <li><a href="{% url 'categories' %}">Категории</a></li>
-                <li><a href="{% url 'products' %}">Товары</a></li>
-                <li><a href="#">О нас</a></li>
-                <li><a href="#">Контакты</a></li>
-                {% if cart|length != 0 %}
-                <li><a href="{% url 'cart_detail' %}">Корзина (<span id="cartLengthHeader">{{cart|length}}</span>)</a></li>
-                {% else %}
-                <li><a href="{% url 'cart_detail' %}">Корзина <span id="cartLengthHeader"></span></a></li>
-                {% endif %}
-                <li><a href="{% url 'orders' %}">Заказы</a></li>
-                {% if request.user.id %}
-                <li><a href="{% url 'users:detail' request.user.id %}">{{request.user}}</a></li>
-                <li><a href="{% url 'users:logout' %}">Выйти</a></li>
-                {% else %}
-                <li><a href="{% url 'users:login' %}">Войти</a></li>
-                <li><a href="{% url 'users:register' %}">Регистрация</a></li>
-                {% endif %}
+<header>
+<!--        <nav class="navbar">-->
+<!--            <ul>-->
+<!--                <li><a href="{% url 'index' %}">Главная</a></li>-->
+<!--                <li><a href="{% url 'categories' %}">Категории</a></li>-->
+<!--                <li><a href="{% url 'products' %}">Товары</a></li>-->
+<!--                <li><a href="#">О нас</a></li>-->
+<!--                <li><a href="#">Контакты</a></li>-->
+<!--                {% if cart|length != 0 %}-->
+<!--                <li><a href="{% url 'cart_detail' %}">Корзина (<span id="cartLengthHeader">{{cart|length}}</span>)</a></li>-->
+<!--                {% else %}-->
+<!--                <li><a href="{% url 'cart_detail' %}">Корзина <span id="cartLengthHeader"></span></a></li>-->
+<!--                {% endif %}-->
+<!--                <li><a href="{% url 'orders' %}">Заказы</a></li>-->
+<!--                {% if request.user.id %}-->
+<!--                <li><a href="{% url 'users:detail' request.user.id %}">{{request.user}}</a></li>-->
+<!--                <li><a href="{% url 'users:logout' %}">Выйти</a></li>-->
+<!--                {% else %}-->
+<!--                <li><a href="{% url 'users:login' %}">Войти</a></li>-->
+<!--                <li><a href="{% url 'users:register' %}">Регистрация</a></li>-->
+<!--                {% endif %}-->
+<!--            </ul>-->
+<!--        </nav>-->
+<!--    </header>-->
+<!--    <form action="{% url 'product_search' %}" method="get" style="margin-top:10px; margin-left:20px">-->
+<!--        <input type="search" name="query">-->
+<!--        <button type="submit">Поиск</button>-->
+<!--    </form>-->
+    <div role="navigation">
+      <div class="">
+        <div class="brand-logo">
+          <a href=""><img src="/static/img/knife2.jpeg" /></a>
+        </div>
+        <div class="brand-phone">
+          <a href="#"><i class="fa fa-phone me-3"></i>900 234-1234</a>
+        </div>
+        <div class="text-center">
+          <nav class="top-bar-wrap">
+            <ul class="top-bar">
+              <li class="nav-item">
+                <a href="{% url 'index' %}"" class="nav-link"><span class="inner-link">Главная</span></a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'categories' %}" class="nav-link"><span class="inner-link">Категории</span></a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'products' %}" class="nav-link"><span class="inner-link">Товары</span></a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'orders' %}" class="nav-link"><span class="inner-link">Заказы</span></a>
+              </li>
+              {% if cart|length != 0 %}
+              <li><a href="{% url 'cart_detail' %}">Корзина (<span id="cartLengthHeader">{{cart|length}}</span>)</a></li>
+              {% else %}-->
+              <li><a href="{% url 'cart_detail' %}">Корзина <span id="cartLengthHeader"></span></a></li>
+              {% endif %}
+              <li class="nav-item">
+                <a href="#" class="nav-link"><span class="inner-link">Service</span></a>
+              </li>
+              {% if request.user.id %}-->
+              <li><a href="{% url 'users:detail' request.user.id %}">{{request.user}}</a></li>
+              <li><a href="{% url 'users:logout' %}">Выйти</a></li>
+              {% else %}-->
+              <li><a href="{% url 'users:login' %}">Войти</a></li>
+              <li><a href="{% url 'users:register' %}">Регистрация</a></li>
+              {% endif %}
             </ul>
-        </nav>
-    </header>
-    <form action="{% url 'product_search' %}" method="get" style="margin-top:10px; margin-left:20px">
-        <input type="search" name="query">
-        <button type="submit">Поиск</button>
-    </form>
+          </nav>
+          <nav class="main-nav-wrap">
+            <ul class="main-nav">
+              <li class="nav-item">
+                <a href="#" class="nav-link"><span class="inner-link"></span></a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><span class="inner-link"></span></a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><span class="inner-link"></span></a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><span class="inner-link"></span></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+</header>
 
     {% block content %}
     {% endblock content%}
